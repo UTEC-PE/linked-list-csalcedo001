@@ -39,23 +39,30 @@ int main (void) {
     cout << "L.get(2) = " << L.get(2) << endl;
     cout << "L.empty() = " << L.empty() << endl << endl;
 
+    cout << "New list: L2" << endl;
+
+    List <int> L2;
+
+    for (int i = 0; i < 5; i++)
+        L2.push_back(i);
+
+
+    cout << "L2.print()" << endl;
+
+    L2.print();
+
+    cout << "L.concat(L2)" << endl;
+
+    L.concat(L2);
+    L.print();
+
+    cout << "L2.empty() = " << L2.empty() << endl;
+
     cout << "L.clear()" << endl;
 
     L.clear();
 
     cout << "L.empty() = " << L.empty() << endl << endl;
-
-    /* TODO: Segmentation fault when List::concat() is called */
-
-    // cout << "L.concat(L2)" << endl;
-    // L.print();
-    //
-    // List <int> L2;
-    //
-    // for (int i = 0; i < 5; i++)
-    //     L2.push_back(i);
-    //
-    // L.concat(L2);
 
     return 0;
 }
