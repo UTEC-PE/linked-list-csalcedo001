@@ -18,27 +18,33 @@ class Iterator {
         T operator *();
 };
 
-Iterator :: Iterator () {
+template <typename T>
+Iterator <T> :: Iterator() {
     current = nullptr;
 }
 
-Iterator :: Iterator (Node <T> *node) {
+template <typename T>
+Iterator <T> :: Iterator(Node <T> *node) {
     current = node;
 }
 
-Iterator <T> operator = (Iterator <T> node) {
+template <typename T>
+Iterator <T> Iterator <T> :: operator = (Iterator <T> node) {
     current = node;
 }
 
-bool Iterator :: operator != (Iterator <T> cmp) {
+template <typename T>
+bool Iterator <T> :: operator != (Iterator <T> cmp) {
     return current != cmp;
 }
 
-Iterator <T> Iterator :: operator++ () {
+template <typename T>
+Iterator <T> Iterator <T> :: operator++ () {
     return current->next;
 }
 
-T Iterator :: operator *() {
+template <typename T>
+T Iterator <T> :: operator *() {
     return current->data;
 }
 
