@@ -60,6 +60,10 @@ int main (void) {
 
     cout << "L.clear()" << endl;
 
+    List <int> :: Iterator <int> i = L.begin();
+
+    cout << i << endl;
+
     L.clear();
 
     cout << "L.empty() = " << L.empty() << endl << endl;

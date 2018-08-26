@@ -2,6 +2,7 @@
 #define ITERATOR_H
 
 #include "node.h"
+#include <iostream>
 
 template <typename T>
 class Iterator {
@@ -9,43 +10,28 @@ class Iterator {
         Node <T> *current;
 
     public:
-        Iterator();
-        Iterator(Node <T> *node);
+        Iterator() {
+            current = nullptr;
+        }
+        Iterator(Node <T> *node) {
+            current = node;
+        }
 
-        Iterator <T> operator = (Iterator <T> node);
-        bool operator != (Iterator <T> cmp);
-        Iterator <T> operator++ ();
-        T operator *();
+        Iterator <T> operator = (Iterator <T> node) {
+            current = node;
+        }
+        bool operator != (Iterator <T> cmp) {
+            return current != cmp;
+        }
+        Iterator <T> operator++ () {
+            if (current)
+                current = current->next;
+            
+            return this;
+        }
+        T operator *() {
+            return current->data;
+        }
 };
-
-template <typename T>
-Iterator <T> :: Iterator() {
-    current = nullptr;
-}
-
-template <typename T>
-Iterator <T> :: Iterator(Node <T> *node) {
-    current = node;
-}
-
-template <typename T>
-Iterator <T> Iterator <T> :: operator = (Iterator <T> node) {
-    current = node;
-}
-
-template <typename T>
-bool Iterator <T> :: operator != (Iterator <T> cmp) {
-    return current != cmp;
-}
-
-template <typename T>
-Iterator <T> Iterator <T> :: operator++ () {
-    return current->next;
-}
-
-template <typename T>
-T Iterator <T> :: operator *() {
-    return current->data;
-}
 
 #endif
