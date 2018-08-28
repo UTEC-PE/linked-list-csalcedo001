@@ -21,13 +21,13 @@ class Iterator {
             current = node;
         }
         bool operator != (Iterator <T> cmp) {
-            return current != cmp;
+            return (current != cmp.current);
         }
         Iterator <T> operator++ () {
             if (current)
                 current = current->next;
-            
-            return this;
+
+            return *this;
         }
         T operator *() {
             return current->data;

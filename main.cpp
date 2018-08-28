@@ -12,7 +12,7 @@ int main (void) {
 
     List <int> L;
 
-    cout << "L.push_front() and L.push_back()" << endl;
+    cout << "L.push_front() and L.push_back()" << endl << endl;
 
     for (int i = 0; i < 10; i++) {
         L.push_front(i);
@@ -22,17 +22,18 @@ int main (void) {
     cout << "L.print(): " << endl;
     L.print();
 
-    cout << "L.pop_front(): " << endl;
+    cout << endl << "L.pop_front(): " << endl;
     L.pop_front();
     L.print();
 
-    cout << "L.pop_back(): " << endl;
+    cout << endl << "L.pop_back(): " << endl;
     L.pop_back();
     L.print();
 
-    cout << "L.print_reverse" << endl;
+    cout << endl << "L.print_reverse():" << endl;
     L.print_reverse();
 
+    cout << endl;
     cout << "L.front() = " << L.front() << endl;
     cout << "L.back() = " << L.back() << endl;
     cout << "L.size() = " << L.size() << endl;
@@ -47,22 +48,29 @@ int main (void) {
         L2.push_back(i);
 
 
-    cout << "L2.print()" << endl;
-
+    cout << endl << "L2.print():" << endl;
     L2.print();
 
-    cout << "L.concat(L2)" << endl;
-
+    cout << endl << "L.concat(L2):" << endl;
     L.concat(L2);
+
     L.print();
 
-    cout << "L2.empty() = " << L2.empty() << endl;
+    cout << endl << "L2.print(): " << endl;
+    L2.print();
+
+    cout << endl << "L2.empty() = " << L2.empty() << endl << endl;
+
+    cout << "Iterator:" << endl << endl;
+    cout << "for (Iterator <int> i = L.begin(); i != L.end(); ++i)" << endl;
+    cout << "    cout << *i << \" \";" << endl << endl;
+
+    for (Iterator <int> i = L.begin(); i != L.end(); ++i)
+        cout << *i << " ";
+
+    cout << endl << endl;
 
     cout << "L.clear()" << endl;
-
-    List <int> :: Iterator <int> i = L.begin();
-
-    cout << i << endl;
 
     L.clear();
 

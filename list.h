@@ -17,7 +17,7 @@ class List {
         void print_reverse(Node <T> *head) {
             if (head) {
                 print_reverse(head->next);
-                cout << head->data << " ";
+                cout << head->data << ", ";
             }
         }
 
@@ -118,14 +118,14 @@ class List {
             return tmp->data;
         }
         void concat(List <T> &other) {
-            // This version of concat deletes the List other
+            // This version of concat clears other
             if (tail)
-                tail->next = other.head; // other.head es un atributo privado
+                tail->next = other.head;
             else
                 head = other.head;
 
-            tail = other.tail; // también es un atributo privado
-            nodes += other.nodes; // también privado
+            tail = other.tail;
+            nodes += other.nodes;
 
             other.head = nullptr;
             other.tail = nullptr;
@@ -138,25 +138,25 @@ class List {
             return nodes;
         }
         void print() {
-            for (Node <T> *tmp = head; tmp != nullptr; tmp = tmp->next)
-                cout << tmp->data << " ";
+            cout << "{";
 
-            cout << endl;
+            for (Node <T> *tmp = head; tmp != nullptr; tmp = tmp->next)
+                cout << tmp->data << ", ";
+
+            if (head)
+                cout << "\b\b";
+
+            cout << "}" << endl;
         }
         void print_reverse() {
+            cout << "{";
+
             print_reverse(head);
 
-            cout << endl;
+            if (head)
+                cout << "\b\b";
 
-            // Node *list[nodes];
-            //
-            // Node *tmp = head;
-            //
-            // for (int i = 0; i < nodes; i++, tmp = tmp->next)
-            //     list[i] = tmp->data;
-            //
-            // for (int i = 0; i < nodes; i++)
-            //     cout << list[i] << " ";
+            cout << "}" << endl;
         };
         void clear() {
             if (head)
@@ -170,7 +170,7 @@ class List {
             return Iterator <T> (head);
         }
         Iterator <T> end() {
-            return Iterator <T> (tail);
+            return Iterator <T> ();
         }
 
         ~List() {
