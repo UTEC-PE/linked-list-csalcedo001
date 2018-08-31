@@ -32,13 +32,13 @@ class List {
             if (head)
                 return head->data;
             else
-                return -1;
+                return -1; // Sería mejor mandar una excepción en caso de una lista vacía
         }
         T back() {
             if (tail)
                 return tail->data;
             else
-                return -1;
+                return -1; // Igual que el caso anterior
         }
         void push_front(T value) {
             Node <T> *new_node = new Node <T>;
@@ -108,7 +108,7 @@ class List {
         }
         T get(int position) {
             if (position >= nodes || position < 0)
-                return -1;
+                return -1; // Sería mejor manejarlo con una excepción
 
             Node <T> *tmp = head;
 
@@ -127,7 +127,7 @@ class List {
             tail = other.tail;
             nodes += other.nodes;
 
-            other.head = nullptr;
+            other.head = nullptr; // No se porque haces esto
             other.tail = nullptr;
             other.nodes = 0;
         }

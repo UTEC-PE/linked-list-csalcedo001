@@ -18,7 +18,7 @@ class Iterator {
         }
 
         Iterator <T> operator = (Iterator <T> node) {
-            current = node;
+            current = node; // Te falta retornar el iterator
         }
         bool operator != (Iterator <T> cmp) {
             return (current != cmp.current);

@@ -1,80 +1,88 @@
 #include <iostream>
+#include <random>
+#include <assert.h>
+#include <string.h>
+
 #include "list.h"
-#include "node.h"
-#include "iterator.h"
 
 using namespace std;
 
-int main (void) {
-    cout << endl;
-    cout << "Constructor:" << endl;
-    cout << "List <int> L;" << endl << endl;
+#define MIN 100
+#define MAX 500
 
-    List <int> L;
+#define PUSH_FRONT 0
+#define PUSH_BACK 1
 
-    cout << "L.push_front() and L.push_back()" << endl << endl;
+#define POP_FRONT 2
+#define POP_BACK 3
 
-    for (int i = 0; i < 10; i++) {
-        L.push_front(i);
-        L.push_back(i * i);
+int generateRandomInt(int min, int max);
+void insertIntoList(List<int> &numbers);
+void removeFromList(List<int> &numbers);
+
+int main(int argc, char *argv[]) {
+    cout << "===========================================================" << endl;
+    cout << "\tDouble Linked Circular List Practice" << endl;
+    cout << "===========================================================" << endl << endl;
+
+    List<int> test, test1;
+
+    const int numberOfElements = generateRandomInt(MIN, MAX);
+    for (int i = 0; i < numberOfElements; i++) {
+        insertIntoList(test);
     }
 
-    cout << "L.print(): " << endl;
-    L.print();
+    assert(test.size() == numberOfElements && "Something is wrong with the push methods");
 
-    cout << endl << "L.pop_front(): " << endl;
-    L.pop_front();
-    L.print();
+    const int elementsToRemove = generateRandomInt(0, MIN - 1);
+    for (int i = 0; i < elementsToRemove; i++) {
+        removeFromList(test);
+    }
 
-    cout << endl << "L.pop_back(): " << endl;
-    L.pop_back();
-    L.print();
+    const int newNumbersSize = numberOfElements - elementsToRemove;
+    assert(test.size() == newNumbersSize && "Something is wrong with the pop functions");
 
-    cout << endl << "L.print_reverse():" << endl;
-    L.print_reverse();
+    test.clear();
+    assert(test.empty() && "Something is wrong with the clear or empty methods");
+    assert(test.size() == 0 && "Something is wrong with the clear method");
 
-    cout << endl;
-    cout << "L.front() = " << L.front() << endl;
-    cout << "L.back() = " << L.back() << endl;
-    cout << "L.size() = " << L.size() << endl;
-    cout << "L.get(2) = " << L.get(2) << endl;
-    cout << "L.empty() = " << L.empty() << endl << endl;
+    for (int i = 0; i < numberOfElements; i++) {
+        insertIntoList(test);
+    }
 
-    cout << "New list: L2" << endl;
+    test.print();
 
-    List <int> L2;
+    const int sizeTemp = test.size();
+    test1.push_front(generateRandomInt(0, 100));
+    test.concat(test1);
 
-    for (int i = 0; i < 5; i++)
-        L2.push_back(i);
+    assert(test.size() == sizeTemp + 1 && "Something is wrong with the concat method");
 
-
-    cout << endl << "L2.print():" << endl;
-    L2.print();
-
-    cout << endl << "L.concat(L2):" << endl;
-    L.concat(L2);
-
-    L.print();
-
-    cout << endl << "L2.print(): " << endl;
-    L2.print();
-
-    cout << endl << "L2.empty() = " << L2.empty() << endl << endl;
-
-    cout << "Iterator:" << endl << endl;
-    cout << "for (Iterator <int> i = L.begin(); i != L.end(); ++i)" << endl;
-    cout << "    cout << *i << \" \";" << endl << endl;
-
-    for (Iterator <int> i = L.begin(); i != L.end(); ++i)
-        cout << *i << " ";
-
-    cout << endl << endl;
-
-    cout << "L.clear()" << endl;
-
-    L.clear();
-
-    cout << "L.empty() = " << L.empty() << endl << endl;
-
-    return 0;
+    system("read");
+    return EXIT_SUCCESS;
 }
+
+int generateRandomInt(int min, int max) {
+    mt19937 rng;
+    rng.seed(random_device()());
+    uniform_int_distribution<mt19937::result_type> distribution(min, max); 
+    return distribution(rng);
+}
+
+void insertIntoList(List<int> &numbers) {
+    const int numberToInsert = generateRandomInt(0, 100);
+
+    const int action = generateRandomInt(0, 1);
+    switch (action) {
+        case PUSH_FRONT: numbers.push_front(numberToInsert); break;
+        case PUSH_BACK: numbers.push_back(numberToInsert); break;
+    }
+} 
+
+void removeFromList(List<int> &numbers) {
+    const int action = generateRandomInt(2, 3);
+    switch (action) {
+        case POP_FRONT: numbers.pop_front(); break;
+        case POP_BACK: numbers.pop_back(); break;
+    }
+} 

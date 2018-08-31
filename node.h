@@ -10,7 +10,7 @@ struct Node {
         if (next) {
             next->killSelf();
 
-            delete this;
+            delete this; // Esto debería estar afuera
         }
     }
 };
